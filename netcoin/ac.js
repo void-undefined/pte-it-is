@@ -16,8 +16,8 @@ const sleep = async(time) => {
 }
 
 let GAME_SETTINGS = {
-  minDelay: 200,
-  maxDelay: 400,
+  minDelay: 3500,
+  maxDelay: 800,
   clickOffset: 20,
   pressureFactor: 0.5
 };
