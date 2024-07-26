@@ -2,7 +2,7 @@
 // @name        Netcoin Autoclicker
 // @match       *://netcoin.layernet.ai/*
 // @grant       none
-// @version     1.0
+// @version     1.1
 // @author      void_undefined
 // ==/UserScript==
 
