@@ -15,9 +15,6 @@ const sleep = async(time) => {
   })
 }
 
-const BUTTON_UP_CLASS = '.okx-growth-up-new'
-const BUTTON_DOWN_CLASS = '.okx-growth-down-new'
-
 let GAME_SETTINGS = {
   minDelay: 200,
   maxDelay: 400,
@@ -29,6 +26,7 @@ let CURRENT_POINTS = ''
 let directionUp = true
 let inRace = false
 let isGamePaused = false
+const RELOAD_PAGE_TIME = 6 * 60 * 1000
 
 const randomDelay = (min, max) => Math.random() * (max - min) + min;
 const randomOffset = range => Math.random() * range * 2 - range;
@@ -73,7 +71,7 @@ function clickElement(target) {
 
 
 async function runRace() {
-  clickElement(document.querySelector('#catch_page > div > :nth-child(7) > div'))
+  // window.location.reload()
 }
 
 function toggleGamePause() {
@@ -88,12 +86,17 @@ async function autoClick() {
           const mainLayer = document.querySelector('#catch_page > div > div > div')
           if(!mainLayer || !mainLayer.classList.contains('translate-y-full')) {
             const fightBtn = querySelectorIncludesText('button.h-full', 'Fight again')
-            const catchNowBtn = querySelectorIncludesText('button.w-full', 'Catch now!')
+
 
             if(fightBtn) {
               await sleep(800)
               fightBtn.click()
             }
+          }
+
+          const catchNowBtn = querySelectorIncludesText('button.w-full', 'Catch now!')
+          if(catchNowBtn) {
+              catchNowBtn.click()
           }
 
           const tapElement = document.querySelector('#catch_page > div > :nth-child(7) > div')
@@ -103,6 +106,13 @@ async function autoClick() {
       } catch (error) { }
   }
   setTimeout(async () => {autoClick()}, randomDelay(GAME_SETTINGS.minDelay, GAME_SETTINGS.maxDelay));
+}
+
+
+function reloadWidget() {
+  window.location.reload()
+
+  setTimeout(async () => {reloadWidget()}, RELOAD_PAGE_TIME);
 }
 
 const settingsMenu = document.createElement('div');
@@ -303,3 +313,5 @@ style.textContent = `
 document.head.appendChild(style);
 
 autoClick();
+
+setTimeout(async () => {reloadWidget()}, RELOAD_PAGE_TIME);
