@@ -2,7 +2,7 @@
 // @name        Netcoin Autoclicker
 // @match       *://netcoin.layernet.ai/*
 // @grant       none
-// @version     1.1
+// @version     1.2
 // @author      void_undefined
 // ==/UserScript==
 
@@ -16,8 +16,8 @@ const sleep = async(time) => {
 }
 
 let GAME_SETTINGS = {
-  minDelay: 300,
-  maxDelay: 800,
+  minDelay: 200,
+  maxDelay: 400,
   clickOffset: 20,
   pressureFactor: 0.5
 };
@@ -57,17 +57,22 @@ function getCoords(element) {
 
 function clickElement(target) {
   if (isGamePaused) return;
-  const { clientX, clientY, screenX, screenY } = getCoords(target);
-  const options = {
-      clientX: clientX + randomOffset(GAME_SETTINGS.clickOffset),
-      clientY: clientY + randomOffset(GAME_SETTINGS.clickOffset),
-      screenX: screenX + randomOffset(GAME_SETTINGS.clickOffset),
-      screenY: screenY + randomOffset(GAME_SETTINGS.clickOffset),
-      pressure: randomPressure()
-  };
-  ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click'].forEach(type => createEvent(type, target, options));
-}
 
+  try{
+    const { clientX, clientY, screenX, screenY } = getCoords(target);
+    const options = {
+        clientX: clientX + randomOffset(GAME_SETTINGS.clickOffset),
+        clientY: clientY + randomOffset(GAME_SETTINGS.clickOffset),
+        screenX: screenX + randomOffset(GAME_SETTINGS.clickOffset),
+        screenY: screenY + randomOffset(GAME_SETTINGS.clickOffset),
+        pressure: randomPressure()
+    };
+
+    ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click'].forEach(type => createEvent(type, target, options));
+  } catch(e) {
+    console.error(e)
+  }
+}
 
 
 async function runRace() {
@@ -83,6 +88,7 @@ function toggleGamePause() {
 async function autoClick() {
   if (!isGamePaused) {
       try {
+
           const mainLayer = document.querySelector('#catch_page > div > div > div')
           if(!mainLayer || !mainLayer.classList.contains('translate-y-full')) {
             const fightBtn = querySelectorIncludesText('button.h-full', 'Fight again')
@@ -312,6 +318,17 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-autoClick();
+const initInStart = async () => {
+  await sleep(3000)
+  clickElement(querySelectorIncludesText('.mt-8', 'Got it'))
+  await sleep(3000)
+  clickElement(document.querySelector('button.flex.items-center.justify-center.self-stretch.overflow-hidden'))
+  await sleep(3000)
+  clickElement(querySelectorIncludesText('.flex.items-center.font-semibold', 'Catch'))
+  await sleep(500)
+  autoClick();
+}
+
+initInStart();
 
 setTimeout(async () => {reloadWidget()}, RELOAD_PAGE_TIME);

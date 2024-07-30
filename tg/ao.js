@@ -2,7 +2,7 @@
 // @name        Telegram Auto-opener
 // @match       *://web.telegram.org/*
 // @grant       none
-// @version     1.0
+// @version     1.1
 // @author      void_undefined
 // ==/UserScript==
 
@@ -27,14 +27,14 @@ let CURRENT_POINTS = ''
 let directionUp = true
 let inRace = false
 let isGamePaused = false
-const OPEN_APP_INTERVAL = 2 * 60 * 60 * 1000
+const OPEN_APP_INTERVAL = 1 * 60 * 60 * 1000
 
 const randomDelay = (min, max) => Math.random() * (max - min) + min;
 const randomOffset = range => Math.random() * range * 2 - range;
 const randomPressure = () => Math.random() * GAME_SETTINGS.pressureFactor + GAME_SETTINGS.pressureFactor;
 
 function querySelectorIncludesText (selector, text){
-  if (!text) {
+  if(!text) {
     return document.querySelector(selector)
   }
 
@@ -58,16 +58,23 @@ function getCoords(element) {
 
 function clickElement(target) {
   if (isGamePaused) return;
-  const { clientX, clientY, screenX, screenY } = getCoords(target);
-  const options = {
-      clientX: clientX + randomOffset(GAME_SETTINGS.clickOffset),
-      clientY: clientY + randomOffset(GAME_SETTINGS.clickOffset),
-      screenX: screenX + randomOffset(GAME_SETTINGS.clickOffset),
-      screenY: screenY + randomOffset(GAME_SETTINGS.clickOffset),
-      pressure: randomPressure()
-  };
-  ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click'].forEach(type => createEvent(type, target, options));
+
+  try{
+    const { clientX, clientY, screenX, screenY } = getCoords(target);
+    const options = {
+        clientX: clientX + randomOffset(GAME_SETTINGS.clickOffset),
+        clientY: clientY + randomOffset(GAME_SETTINGS.clickOffset),
+        screenX: screenX + randomOffset(GAME_SETTINGS.clickOffset),
+        screenY: screenY + randomOffset(GAME_SETTINGS.clickOffset),
+        pressure: randomPressure()
+    };
+
+    ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click'].forEach(type => createEvent(type, target, options));
+  } catch(e) {
+    console.error(e)
+  }
 }
+
 
 function toggleGamePause() {
   isGamePaused = !isGamePaused;
@@ -75,6 +82,7 @@ function toggleGamePause() {
   pauseResumeButton.style.backgroundColor = isGamePaused ? '#e5c07b' : '#98c379';
 }
 
+// ======================================== APPS
 function openApp() {
   clickElement(document.querySelector('.Button[title="Open bot command keyboard"]'))
 }
@@ -83,13 +91,50 @@ function closeApp() {
   clickElement(document.querySelector('.Button[title="Close"]'))
 }
 
+function closeConfirmApp() {
+  clickElement(document.querySelector('.Button.confirm-dialog-button.default.danger'))
+}
+// ===== OKX
+const runOKXApp = async() => {
+    openApp()
+    await sleep(10000)
+    closeApp()
+}
+// =============
+// ===== Netcoin
+const runNetcoinApp = async() => {
+  openApp()
+}
+// =============
+// ===== CryptoRank
+const runCryptoRankApp = async() => {
+  openApp()
+  await sleep(10000)
+  closeApp()
+}
+// =============
+
+const OKX_APP_TITLE = 'OKX Racer'
+const NETCOIN_APP_TITLE = 'Netcoin by LayerNet'
+const CRYPTO_RANK = 'CryptoRank'
+const BLUM = 'Blum'
+
+const runApp = async () => {
+  const title = document.querySelector('.ChatInfo .title .fullName').textContent
+  if(title === OKX_APP_TITLE) {
+    await runOKXApp()
+  } else if(title === NETCOIN_APP_TITLE) {
+    await runNetcoinApp()
+  } else if(title === CRYPTO_RANK) {
+    await runCryptoRankApp()
+  }
+}
+
 async function scheduleAppOpen() {
   setTimeout(async () => {
     if (isGamePaused) return;
 
-    openApp()
-    await sleep(10000)
-    closeApp()
+    await runApp()
 
     scheduleAppOpen()
   }, OPEN_APP_INTERVAL)
@@ -118,6 +163,13 @@ pauseResumeButton.textContent = 'Pause';
 pauseResumeButton.className = 'main-btn';
 pauseResumeButton.onclick = toggleGamePause;
 settingsMenu.appendChild(pauseResumeButton);
+
+const runButton = document.createElement('button');
+runButton.textContent = 'Run test';
+runButton.className = 'main-btn';
+runButton.onclick = runApp;
+settingsMenu.appendChild(runButton);
+
 
 const openButton = document.createElement('button');
 openButton.textContent = 'Open';
