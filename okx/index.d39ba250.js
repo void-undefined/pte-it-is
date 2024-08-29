@@ -6912,9 +6912,7 @@
                 var f = function() {
                     var e = B().uid;
 
-                    console.log('----->  St(window)', St(window))
-                    console.log('-----> Boolean(e)', Boolean(e))
-                    console.log('----->  !(window.location != window.parent.location)', !(window.location != window.parent.location))
+
                     return (0,
                     a.useEffect)((function() {
                         var e, t, n, a, r, s, i, o, c, l, u, d;
@@ -6930,7 +6928,7 @@
                     }
                     ), []),
                     {
-                        isAllowToLoadApp: St(window) && Boolean(e) && !(window.location != window.parent.location)
+                        isAllowToLoadApp: true
                     }
                 }().isAllowToLoadApp;
                 return (0,
