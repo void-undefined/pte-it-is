@@ -7889,3 +7889,4 @@
 }
 )();
 //# sourceMappingURL=https://static-daily.okg.com/crash/okfe/growth/telegram-mini-app/index.16c9d244.js.map
+
