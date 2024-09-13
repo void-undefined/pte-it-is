@@ -13561,7 +13561,7 @@ const R6 = ({className: e}) => N.jsxs("svg", {
             platformDisabled: !0
         });
     const {OpenAPI: e, AuthService: t} = await ta(async () => {
-        const {OpenAPI: f, AuthService: d} = await import("./index-B_S8I6Qm.js");
+        const {OpenAPI: f, AuthService: d} = await import("https://app.production.tonxdao.app/assets/index-B_S8I6Qm.js");
         return {
             OpenAPI: f,
             AuthService: d
