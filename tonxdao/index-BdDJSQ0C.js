@@ -1,5 +1,6 @@
 
-const __vite__mapDeps = (i, m=__vite__mapDeps, d=(m.f || (m.f = ["assets/state-DUgjr4qF.js", "assets/index-B_S8I6Qm.js", "assets/Centrifugo-CqSc0S8v.js", "assets/App-C9AT5Lu0.js", "assets/App-DYoQzhbv.css"]))) => i.map(i => d[i]);
+const __vite__mapDeps = (i, m=__vite__mapDeps, d=(m.f || (m.f = ["https://app.production.tonxdao.app/assets/state-DUgjr4qF.js", "https://app.production.tonxdao.app/assets/index-B_S8I6Qm.js", "https://app.production.tonxdao.app/assets/Centrifugo-CqSc0S8v.js", "https://app.production.tonxdao.app/assets/App-C9AT5Lu0.js", "https://app.production.tonxdao.app/assets/App-DYoQzhbv.css"]))) => i.map(i => d[i]);
+
 function lv(e, t) {
     for (var n = 0; n < t.length; n++) {
         const r = t[n];
