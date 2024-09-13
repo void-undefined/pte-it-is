@@ -13569,7 +13569,7 @@ const R6 = ({className: e}) => N.jsxs("svg", {
     }
     , [])
       , {state: n} = await ta(async () => {
-        const {state: f} = await import("./state-DUgjr4qF.js").then(d => d.b);
+        const {state: f} = await import("https://app.production.tonxdao.app/state-DUgjr4qF.js").then(d => d.b);
         return {
             state: f
         }
@@ -13625,13 +13625,13 @@ const R6 = ({className: e}) => N.jsxs("svg", {
       , s = async () => {
         await o();
         const [f,d] = await Promise.all([ta(async () => {
-            const {CentrifugoProvider: m} = await import("./Centrifugo-CqSc0S8v.js");
+            const {CentrifugoProvider: m} = await import("https://app.production.tonxdao.app/Centrifugo-CqSc0S8v.js");
             return {
                 CentrifugoProvider: m
             }
         }
         , __vite__mapDeps([2, 1, 0])).then( ({CentrifugoProvider: m}) => m), ta(async () => {
-            const {App: m} = await import("./App-C9AT5Lu0.js");
+            const {App: m} = await import("https://app.production.tonxdao.app/App-C9AT5Lu0.js");
             return {
                 App: m
             }
