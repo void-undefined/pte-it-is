@@ -2,7 +2,7 @@
 // @name        tonxdao ao
 // @match       *://web.telegram.org/*
 // @grant       none
-// @version     1.1
+// @version     1.2
 // @author      void_undefined
 // ==/UserScript==
 
@@ -27,7 +27,7 @@ let CURRENT_POINTS = ''
 let directionUp = true
 let inRace = false
 let isGamePaused = false
-const OPEN_APP_INTERVAL = 15 * 1000
+const OPEN_APP_INTERVAL = 5 * 1000
 
 const randomDelay = (min, max) => Math.random() * (max - min) + min;
 const randomOffset = range => Math.random() * range * 2 - range;
