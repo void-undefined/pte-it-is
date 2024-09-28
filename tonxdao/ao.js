@@ -83,8 +83,12 @@ function toggleGamePause() {
 }
 
 // ======================================== APPS
-function openApp() {
+async function openApp() {
   clickElement(document.querySelector('.reply-markup-button-text'))
+
+  await sleep(3000)
+
+  clickElement(querySelectorIncludesText('.i18n', 'Launch'))
 }
 
 function closeApp() {
@@ -96,7 +100,7 @@ function closeConfirmApp() {
 }
 
 const runTONDAOApp = async() => {
-  openApp()
+  await openApp()
 }
 
 const TONDAO_HREF = 'https://web.telegram.org/k/#@tonxdao_bot'
@@ -113,7 +117,7 @@ async function scheduleAppOpen() {
 
     await runApp()
 
-    scheduleAppOpen()
+    // scheduleAppOpen()
   }, OPEN_APP_INTERVAL)
 }
 
