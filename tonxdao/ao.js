@@ -2,7 +2,7 @@
 // @name        tonxdao ao
 // @match       *://web.telegram.org/*
 // @grant       none
-// @version     1.2
+// @version     1.3
 // @author      void_undefined
 // ==/UserScript==
 
