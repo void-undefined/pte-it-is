@@ -2,7 +2,7 @@
 // @name        tonxdao ac
 // @match       *://app.production.tonxdao.app/*
 // @grant       none
-// @version     1.0
+// @version     1.1
 // @author      void_undefined
 // @description 13.09.2024, 16:45:21
 // ==/UserScript==
@@ -97,6 +97,16 @@ const daxDiff = 20
 let isClickedDown = false
 let canStart = false
 
+const infoIconSelector = '.flex.flex-row.text-white.font-bold.text-base.gap-2.sora-bold.items-center svg'
+const infoRowsSelector = '.text-base.text-white.mb-2.pl-6.pr-6'
+
+const getProfitValue = (el) => {
+  const arr = el.textContent.split(' ')
+  const value = arr[arr.length - 2]
+
+  return Number(value)
+}
+
 const mainRun = () => {
   if(!canStart) {
     return
@@ -107,21 +117,34 @@ const mainRun = () => {
     parent.postMessage({reload:true},"*")
   }
 
+  if(!document.querySelector(infoRowsSelector)) {
+    const infoIcon = document.querySelector(infoIconSelector)
+    if(infoIcon) {
+      clickElement(infoIcon)
+    }
+    return
+  }
+
+
   const canvas = document.querySelector('#root canvas')
-  const profit = document.querySelectorAll('.coin-logo + div')
-  const doaProfit = profit[0]?.querySelector('span')
+  const profit = document.querySelectorAll(infoRowsSelector)
+  const doaProfit = profit[0]
   const userProfit = profit[1]
   if(doaProfit && userProfit) {
     if(!daoProfitLast) {
-      daoProfitLast = Number(doaProfit.textContent)
+      console.log('----> DAO text ', getProfitValue(doaProfit))
+
+      daoProfitLast = getProfitValue(doaProfit)
     }
 
-    if(!daoProfitLast) {
-      userProfitLast = Number(userProfit.textContent)
+    if(!userProfitLast) {
+      console.log('----> USER text ', getProfitValue(userProfit))
+
+      userProfitLast = getProfitValue(userProfit)
     }
 
-    const daoDelta = Number(doaProfit.textContent) - daoProfitLast
-    const userDelta = Number(userProfit.textContent) - userProfitLast
+    const daoDelta = getProfitValue(doaProfit) - daoProfitLast
+    const userDelta = getProfitValue(userProfit) - userProfitLast
 
     console.log('---> dao profit ', daoDelta)
     console.log('---> user profit ', userDelta)
@@ -138,8 +161,8 @@ const mainRun = () => {
       }
     }
 
-    daoProfitLast = Number(doaProfit.textContent)
-    userProfitLast = Number(userProfit.textContent)
+    daoProfitLast = getProfitValue(doaProfit)
+    userProfitLast = getProfitValue(userProfit)
   }
 }
 
@@ -170,5 +193,3 @@ const nextReload = () => {
 }
 
 nextReload()
-
-
