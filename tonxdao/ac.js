@@ -2,7 +2,7 @@
 // @name        tonxdao ac
 // @match       *://app.production.tonxdao.app/*
 // @grant       none
-// @version     1.2
+// @version     1.3
 // @author      void_undefined
 // @description 13.09.2024, 16:45:21
 // ==/UserScript==
