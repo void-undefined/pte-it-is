@@ -2,7 +2,7 @@
 // @name        tonxdao ao
 // @match       *://web.telegram.org/*
 // @grant       none
-// @version     1.3
+// @version     1.4
 // @author      void_undefined
 // ==/UserScript==
 
@@ -84,11 +84,17 @@ function toggleGamePause() {
 
 // ======================================== APPS
 async function openApp() {
-  clickElement(document.querySelector('.reply-markup-button-text'))
+  const opener = document.querySelector('.new-message-bot-commands-view')
+  if(opener) {
+    clickElement(document.querySelector('.new-message-bot-commands-view'))  
+  }
 
   await sleep(3000)
 
-  clickElement(querySelectorIncludesText('.i18n', 'Launch'))
+  const launch = querySelectorIncludesText('.i18n', 'Launch')
+  if(launch) {
+   clickElement(launch)
+  }
 }
 
 function closeApp() {
@@ -117,7 +123,7 @@ async function scheduleAppOpen() {
 
     await runApp()
 
-    // scheduleAppOpen()
+    scheduleAppOpen()
   }, OPEN_APP_INTERVAL)
 }
 
