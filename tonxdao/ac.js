@@ -2,7 +2,7 @@
 // @name        tonxdao ac
 // @match       *://app.production.tonxdao.app/*
 // @grant       none
-// @version     1.1
+// @version     1.2
 // @author      void_undefined
 // @description 13.09.2024, 16:45:21
 // ==/UserScript==
@@ -97,7 +97,7 @@ const daxDiff = 20
 let isClickedDown = false
 let canStart = false
 
-const infoIconSelector = '.flex.flex-row.text-white.font-bold.text-base.gap-2.sora-bold.items-center svg'
+const infoIconSelector = '.flex.flex-row.text-white.font-bold.text-base.gap-2.font-bold.items-center svg'
 const infoRowsSelector = '.text-base.text-white.mb-2.pl-6.pr-6'
 
 const getProfitValue = (el) => {
