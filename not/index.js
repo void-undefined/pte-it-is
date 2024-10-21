@@ -2,7 +2,7 @@
 // @name         not
 // @namespace    Violentmonkey Scripts
 // @match        *://*.notpx.app/*
-// @version      1.1
+// @version      1.2
 // @grant        none
 // @icon         https://notpx.app/favicon.ico
 // ==/UserScript==
@@ -87,7 +87,7 @@ async function randomClick() {
 
   isClickInProgress = true;
 
-  const templateBtn = document.querySelector('img[src^="https://static.notpx.app/templates/6578955397.png"]')
+  const templateBtn = document.querySelector('img[src^="https://static.notpx.app/templates/"]')
   const paintButton = Array.from(document.querySelectorAll('button[class^="_button_"]')).filter(button => button.textContent.includes('Paint') || button.textContent.includes('No energy'))[0];
   if (paintButton) {
     const buttonText = paintButton.querySelector('span[class^="_button_text_"]').textContent;
