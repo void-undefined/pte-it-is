@@ -89,7 +89,7 @@ async function randomClick() {
 
   const templateBtn = document.querySelector('img[src^="https://static.notpx.app/templates/"]')
   const paintButton = Array.from(document.querySelectorAll('button[class^="_button_"]')).filter(button => button.textContent.includes('Paint') || button.textContent.includes('No energy'))[0];
-  if (paintButton) {
+  if (paintButton&&templateBtn) {
     const buttonText = paintButton.querySelector('span[class^="_button_text_"]').textContent;
 
     if (buttonText === 'Paint') {
