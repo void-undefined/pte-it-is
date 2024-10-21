@@ -2,7 +2,7 @@
 // @name         not
 // @namespace    Violentmonkey Scripts
 // @match        *://*.notpx.app/*
-// @version      1.0
+// @version      1.1
 // @grant        none
 // @icon         https://notpx.app/favicon.ico
 // ==/UserScript==
@@ -103,7 +103,7 @@ async function randomClick() {
 
         simulatePointerEvents(canvas, x, y, x, y);
 
-        // simulatePointerEvents(paintButton, 0, 0, 0, 0);
+        simulatePointerEvents(paintButton, 0, 0, 0, 0);
         const nextClickDelay = getRandomDelay(GAME_SETTINGS.minDelay, GAME_SETTINGS.maxDelay);
         await sleep(1000)
         isClickInProgress = false;
