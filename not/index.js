@@ -2,7 +2,7 @@
 // @name         not
 // @namespace    Violentmonkey Scripts
 // @match        *://*.notpx.app/*
-// @version      1.2
+// @version      1.3
 // @grant        none
 // @icon         https://notpx.app/favicon.ico
 // ==/UserScript==
