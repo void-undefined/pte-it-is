@@ -4627,7 +4627,7 @@
                 window.scrollTo(0, 0);
               }, []),
               (0, n.useEffect)(() => {}),
-              (0, a.Tc)() || true
+              (0, a.Tc)() || r
                 ? (0, d.jsx)(h.Provider, {
                     value: { isAuthenticated: o },
                     children: t,
