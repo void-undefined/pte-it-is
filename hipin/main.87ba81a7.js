@@ -76198,6 +76198,7 @@
           }, 1e3);
         }, []);
         const [ct, ut] = (0, e.useState)(null);
+        console.log('----->a1');
         return (0, l.jsx)(D.O, {
           children: (0, l.jsxs)('div', {
             className:
@@ -77172,6 +77173,7 @@
           { t: he } = (0, s.Bd)(),
           fe = (0, e.useRef)(null),
           ge = (0, e.useRef)(null);
+        console.log('----->a2');
         return (
           (0, e.useEffect)(() => {
             const e = () => {
@@ -78006,6 +78008,7 @@
           H = 0,
           q = 1,
           [W, J] = (0, e.useState)(H);
+        console.log('----->a3');
         return (
           (0, T.A)('agent_page'),
           (0, l.jsx)(D.O, {
@@ -78923,6 +78926,7 @@
       Bt = () => {
         const { t: e } = (0, s.Bd)(),
           { claim_history: t, historyLoading: r } = (0, Y.d4)((e) => e.community);
+        console.log('----->a4');
         return (0, l.jsx)(D.O, {
           children: (0, l.jsxs)(l.Fragment, {
             children: [
@@ -79112,6 +79116,7 @@
         { claimCommunity: R, loading: j, error: O } = ct(),
         [M, N] = (0, e.useState)({ link: '' }),
         [F, L] = (0, e.useState)(!1);
+      console.log('----->a5');
       return (0, l.jsx)(D.O, {
         children: (0, l.jsxs)(l.Fragment, {
           children: [
@@ -86325,6 +86330,7 @@
           );
         })({});
         const [m, B] = (0, e.useState)(f.Hidden);
+        console.log('----->a6');
         return (0, l.jsx)(D.O, {
           children: (0, l.jsx)(l.Fragment, {
             children: (0, l.jsxs)('div', {
@@ -86767,6 +86773,7 @@
               }
           },
           [F, L] = (0, e.useState)(!1);
+        console.log('----->a7');
         return (0, l.jsx)(D.O, {
           children: (0, l.jsx)(l.Fragment, {
             children: (0, l.jsxs)('div', {
@@ -87159,13 +87166,15 @@
           children: [(0, l.jsx)(oi.a, { clickLogin: w }), (0, l.jsx)(i.I, { isLoading: c })],
         });
       },
-      Bi = () =>
-        (0, l.jsx)(D.O, {
+      Bi = () => {
+        console.log('----->a8');
+        return (0, l.jsx)(D.O, {
           children:
             window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData
               ? (0, l.jsx)(mi, {})
               : (0, l.jsx)(hi, {}),
-        }),
+        });
+      },
       gi = (0, e.lazy)(() =>
         __webpack_require__.e(826).then(__webpack_require__.bind(__webpack_require__, 15403))
       ),
